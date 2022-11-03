@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import { ethers } from "ethers";
-import { Alert, AlertTitle } from "@mui/material";
 import { Button } from "@material-ui/core";
 import TransactionForm from "./transactionForm";
 
@@ -50,7 +49,8 @@ function WalletDetails() {
   };
 
   //function to process payment transaction
-  const processPayment = async () => {
+  const processPayment = async (event) => {
+    event.preventDefault()
     setDisableMessage(true); // disabling pay button until transanctioni executed
     try {
       ethers.utils.getAddress(receiverAddress); // Validating if reciever's address is Valid or Not
@@ -59,6 +59,7 @@ function WalletDetails() {
         value: ethers.utils.parseEther(amount),
       }); // Sending Transaction  request
       setTransactionStatus("Last Successful transaction" + transaction.hash);
+      setError(null)
     } catch (error) {
       setError(error.message);
     }
