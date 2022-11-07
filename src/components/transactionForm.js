@@ -17,8 +17,9 @@ const TransactionForm = ({
             placeholder="Reciever's Address"
           />
           <TextField
+					  type = 'number'
             onChange={onAmountChange}
-            placeholder={`Amount in Ethers should be less than ${walletBalance}`}
+            placeholder={`Amount < ${walletBalance}`}
           />
           <br />
           <Button
